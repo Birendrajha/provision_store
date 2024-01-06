@@ -9,15 +9,17 @@ import {
   CssBaseline,
   Avatar,
   Box,
-  AppBar, Toolbar, InputBase, IconButton
+  AppBar, Toolbar, InputBase, IconButton,Button
 } from '@mui/material';
+
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from "react-router-dom";
 const ProductList = () => {
   const containerStyle = {
     paddingTop: '16px',
     paddingBottom: '16px',
   };
-
+  const navigate = useNavigate();
   const cardStyle = {
     height: '100%',
     display: 'flex',
@@ -61,6 +63,12 @@ const ProductList = () => {
     paddingLeft: '40px', // Adjust based on the search icon size
     width: '100%',
   }
+  const buttonStyle = {
+    position: 'fixed',
+    bottom: '20px',
+    right: '20px',
+  };
+
   const [productList,setProductList] = useState([]);
   const [searchQuery,setSearchQuery] = useState('');
   const getProduct = async () => {
@@ -109,13 +117,18 @@ const ProductList = () => {
 
   return (
     <Container maxWidth="lg" style={containerStyle}>
+    <Box><Button style={buttonStyle} onClick={()=>{navigate("/About")}}>About</Button>
+</Box>
     <Box marginBottom={2} paddingBottom={9}>
      <AppBar position="fixed" style={appBarStyle}>
       <Toolbar>
+      <Box paddingX={2}>
       <Avatar src={`http://www.hindigraphics.in/wp-content/uploads/2019/01/pro.png`}/>
+      </Box>
         <Typography variant="h6" style={titleStyle}>
          Provision Store
         </Typography>
+
         <div style={searchContainerStyle}>
         <IconButton style={searchIconStyle} aria-label="search" disabled>
             <SearchIcon />
